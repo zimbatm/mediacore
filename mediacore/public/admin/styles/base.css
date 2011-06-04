@@ -412,6 +412,14 @@ a.btn.red:visited {
 .btn.inline:active, .btn.inline.active { background-position: 0 -52px }
 .btn.inline:hover span, .btn.inline.hover span { background-position: 100% -26px }
 .btn.inline:active span, .btn.inline.active span { background-position: 100% -52px }
+.btn.inline:disabled, .btn.inline.disabled {
+	cursor: default;
+	background-position: 0 0;
+}
+.btn.inline:disabled span, .btn.inline.disabled span {
+	background-position: 100% 0;
+	color: #777;
+}
 
 /* Inline table row buttons */
 .btn.table-row {
