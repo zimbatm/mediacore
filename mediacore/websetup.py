@@ -175,6 +175,7 @@ def add_default_data():
         (u'advertising_sidebar_html', u''),
         (u'comments_engine', u'mediacore'),
         (u'facebook_appid', u''),
+	(u'disqus_shortname', u''),
     ]
     settings.extend(appearance_settings)
 

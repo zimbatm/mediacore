@@ -37,9 +37,10 @@ from mediacore.model import MultiSetting
 comments_enable_disable = lambda: (
     ('mediacore', _("Built-in comments")),
     ('facebook', _('Facebook comments (requires a Facebook application ID)')),
+    ('disqus', _('Disqus comments (giving the disqus shortname is recommended)')),
     ('disabled', _('Disable comments')),
 )
-comments_enable_validator = OneOf(('mediacore', 'facebook', 'disabled'))
+comments_enable_validator = OneOf(('mediacore', 'facebook', 'disqus', 'disabled'))
 
 enable_disable = lambda: (
     ('enabled', _('Enable')),
@@ -276,6 +277,10 @@ class CommentsForm(ListForm):
         ListFieldSet('facebook', suppress_label=True, legend=N_('Facebook Comments:'), css_classes=['details_fieldset'], children=[
             TextField('facebook_appid', label_text=N_('Application ID'),
                 help_text=N_('See: http://www.facebook.com/developers/createapp.php')),
+        ]),
+        ListFieldSet('discus', suppress_label=True, legend=N_('Disqus Comments:'), css_classes=['details_fieldset'], children=[
+            TextField('disqus_shortname', label_text=N_('Disqus short name'),
+	      help_text=N_('See: http://docs.disqus.com/developers/universal/')),
         ]),
         SubmitButton('save', default=N_('Save'), css_classes=['btn', 'btn-save', 'blue', 'f-rgt']),
     ]

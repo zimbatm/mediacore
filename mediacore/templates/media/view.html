@@ -24,6 +24,7 @@
 <xi:include href="../master.html" />
 <xi:include href="../comments/_list.html" py:if="comments_engine == 'mediacore'" />
 <xi:include href="../comments/facebook.html" py:if="comments_engine == 'facebook'" />
+<xi:include href="../comments/disqus.html" py:if="comments_engine == 'disqus'" />
 <head>
 	<title>${h.page_title(default=media.title, media=media)}</title>
 	<link py:if="media.podcast" href="${h.url_for('/styles/podcasts.css')}" media="screen" rel="stylesheet" type="text/css" />
@@ -74,6 +75,9 @@
 				</py:when>
 				<py:when test="'mediacore'">
 					${comment_list(comments, comment_form_action, comment_form_values)}
+				</py:when>
+				<py:when test="'disqus'">
+					${disqus_comment(shortname=settings['disqus_shortname'], xid=media.id)}
 				</py:when>
 			</py:choose>
 		</div>
