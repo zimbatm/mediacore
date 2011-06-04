@@ -21,6 +21,8 @@
       xmlns:xi="http://www.w3.org/2001/XInclude"
       py:strip="">
 
+<xi:include href="comments/disqus.html" />
+
 <?python feed_links = [] ?>
 
 <head py:match="head">
@@ -70,6 +72,7 @@
 		</script>
 		<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
 	<![endif]-->
+        ${disqus_comment_count()}
 </body>
 
 </html>

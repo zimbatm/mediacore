@@ -45,7 +45,7 @@
 						<h4>Latest Episodes</h4>
 						<ol>
 							<li py:for="media in podcast_episodes[podcast]" class="meta-${media.type}">
-								<a class="underline-hover" href="${h.url_for(controller='/media', action='view', slug=media.slug, podcast_slug=podcast.slug)}">${media.title}</a>
+							<a class="underline-hover" data-disqus-identifier="${media.id}" href="${h.url_for(controller='/media', action='view', slug=media.slug, podcast_slug=podcast.slug)}">${media.title}</a>
 							</li>
 						</ol>
 					</div>

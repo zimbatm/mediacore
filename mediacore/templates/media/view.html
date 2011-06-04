@@ -77,7 +77,7 @@
 					${comment_list(comments, comment_form_action, comment_form_values)}
 				</py:when>
 				<py:when test="'disqus'">
-					${disqus_comment(shortname=settings['disqus_shortname'], xid=media.id)}
+					${disqus_comment(post_id=media.id)}
 				</py:when>
 			</py:choose>
 		</div>
