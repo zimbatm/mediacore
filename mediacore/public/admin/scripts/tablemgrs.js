@@ -95,6 +95,17 @@ var BulkTableManager = new Class({
 			updateRow: toggleOff,
 			removeRow: toggleOff
 		});
+		this._syncSelect();
+	},
+
+	removeRow: function(resp){
+		TableManager.prototype.removeRow.call(this, resp);
+		this._syncSelect();
+	},
+
+	updateRow: function(resp){
+		TableManager.prototype.updateRow.call(this, resp);
+		this._syncSelect();
 	},
 
 	getCheckedRows: function(){
@@ -108,11 +119,22 @@ var BulkTableManager = new Class({
 	onToggleCheckbox: function(e){
 		var target = this._toggleTarget(e);
 		if (!target.checked && this.toggler.checked) this.toggler.checked = false;
+		this._syncSelect();
 	},
 
 	onToggleCheckboxes: function(e){
 		var target = this._toggleTarget(e);
 		this.table.getElements('input.bulk-checkbox').set('checked', this.toggler.checked);
+		this._syncSelect();
+	},
+
+	_syncSelect: function() {
+		if (this.options.syncSelect) {
+			var disabled = (this.getCheckedRows().length <= 0) && "disabled";
+			$$(this.options.syncSelect).each(function(e) {
+				e.disabled = disabled;
+			});
+		}
 	},
 
 	_toggleTarget: function(e){
@@ -336,13 +358,15 @@ var BulkAction = new Class({
 	},
 
 	onClick: function(e){
-		var numRows = this.mgr.getCheckedRows().length;
-		if (this.options.confirmMgr === false) return this.sendRequest();
-		if (!this.confirmMgr) {
-			this.confirmMgr = new ConfirmMgr(this.options.confirmMgr)
-				.addEvent('confirm', this.onConfirm.bind(this));
+		if (!this.disabled) {
+			var numRows = this.mgr.getCheckedRows().length;
+			if (this.options.confirmMgr === false) return this.sendRequest();
+			if (!this.confirmMgr) {
+				this.confirmMgr = new ConfirmMgr(this.options.confirmMgr)
+					.addEvent('confirm', this.onConfirm.bind(this));
+			}
+			this.confirmMgr.openConfirmDialog(numRows);
 		}
-		this.confirmMgr.openConfirmDialog(numRows);
 	},
 
 	onConfirm: function(){

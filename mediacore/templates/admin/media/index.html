@@ -31,7 +31,8 @@
 	<script type="text/javascript">
 		window.addEvent('domready', function(){
 			var table = new BulkTableManager('media-table', {
-				prefix: 'media-'
+				prefix: 'media-',
+				syncSelect: '#bulk-actions button'
 			});
 			var bulkDelete = new BulkDelete(table, {
 				saveUrl: '${h.url_for(action='bulk', type='delete')}',
@@ -82,7 +83,7 @@
 			</py:choose>
 			<div class="f-rgt">
 				<a class="btn inline block f-lft" href="${h.url_for(action='edit', id='new')}" style="margin-right:10px"><span>Add New Media</span></a>
-				<div class="dropdown-wrapper f-lft" style="margin-right:10px;width:130px">
+				<div id="bulk-actions" class="dropdown-wrapper f-lft" style="margin-right:10px;width:130px">
 					<div class="dropdown-position">
 						<div class="dropdown-box">
 							<div class="dropdown-top"><div /></div>

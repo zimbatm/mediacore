@@ -37,7 +37,8 @@
 				addModal: 'add-category-box',
 				editModal: 'edit-category-box',
 				deleteModal: 'delete-category-box',
-				prefix: 'cat-'
+				prefix: 'cat-',
+				syncSelect: '#bulk-delete-cat'
 			});
 			var bulkDeleteCat = new BulkDelete(cattbl, {
 				saveUrl: '${h.url_for(controller='/admin/categories', action='bulk', type='delete')}',

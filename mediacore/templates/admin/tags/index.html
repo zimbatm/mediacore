@@ -34,7 +34,8 @@
 		window.addEvent('domready', function(){
 			var tagtbl = new TagTable('tag-table', {
 				addButton: 'add-tag-btn',
-				prefix: 'tag-'
+				prefix: 'tag-',
+				syncSelect: '#bulk-delete'
 			});
 			var bulkDelete = new BulkDelete(tagtbl, {
 				saveUrl: '${h.url_for(action='bulk', type='delete')}',
